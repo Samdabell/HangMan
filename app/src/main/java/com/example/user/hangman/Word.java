@@ -11,9 +11,25 @@ import java.util.ArrayList;
 public class Word {
 
     StringBuilder word;
+    StringBuilder coveredWord;
 
     public Word(StringBuilder word){
         this.word = word;
+    }
+
+    public void setCoveredWord(){
+        coveredWord = new StringBuilder(word.length());
+        for (int i = 0; i < word.length(); i++){
+            coveredWord.append("_");
+        }
+    }
+
+    public StringBuilder getWord() {
+        return word;
+    }
+
+    public StringBuilder getCoveredWord(){
+        return coveredWord;
     }
 
     public String changeToString(){
@@ -29,6 +45,7 @@ public class Word {
         for (int i = 0; i < word.length(); i++ ){
             if (word.charAt(i) == letter){
                 positions.add(i+1);
+                coveredWord = coveredWord.replace(i, i+1, String.valueOf(letter));
             }
         }
         return positions;

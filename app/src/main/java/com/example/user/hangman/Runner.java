@@ -16,11 +16,15 @@ public class Runner {
         Print.askWord();
         String stringWord =  Input.getWord();
         Print.clearScreen();
+
         User user = new User(name);
         Word word = new Word(new StringBuilder(stringWord));
         Game game = new Game(word, user, new Print());
+
         game.getWordLength();
+        game.setCoveredWord();
         while (!game.loseCheck()) {
+            game.getCoveredWord();
             Print.askLetter();
             char letter = Input.getLetter();
             game.guessLetter(letter);
@@ -28,6 +32,7 @@ public class Runner {
                 game.win();
                 break;
             }
+            game.showGuessed();
         }
     }
 }

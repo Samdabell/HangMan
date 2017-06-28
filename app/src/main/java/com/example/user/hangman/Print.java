@@ -28,8 +28,12 @@ public class Print {
         System.out.println("Guess a letter");
     }
 
+    public void coveredWord(StringBuilder word){
+        System.out.println(word);
+    }
+
     public void positions(char letter, ArrayList<Integer> positions){
-        System.out.println(letter + " is in the following positions " + positions);
+        System.out.println(letter + " is in the following positions: " + positions);
     }
 
     public void repeatGuess(){
@@ -40,7 +44,11 @@ public class Print {
         System.out.println(String.format("Sorry, wrong guess. You have %d lives left", lives));
     }
 
-    public void winMessage(String word){
-        System.out.println("Well done, you have won, you guessed every letter of " + word);
+    public void guessedLetters(ArrayList<Character> guessed){
+        System.out.println("Letters guessed: " + guessed);
+    }
+
+    public void winMessage(String word, User user){
+        System.out.println("Well done " + user.getName() + ", you've won. You successfully guessed every letter of " + word);
     }
 }

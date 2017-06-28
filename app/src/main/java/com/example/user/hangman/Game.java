@@ -11,6 +11,7 @@ import static android.media.CamcorderProfile.get;
 public class Game {
 
     Word word;
+    Word hiddenWord;
     User user;
     Print print;
     int counter;
@@ -28,14 +29,17 @@ public class Game {
         print.wordLength(word.getWordLength());
     }
 
+    public void setCoveredWord(){
+        word.setCoveredWord();
+    }
+
+    public void getCoveredWord(){
+        print.coveredWord(word.getCoveredWord());
+    }
+
     public void getLetterPositions(char letter){
         print.positions(letter, word.checkForLetter(letter));
         counter += word.checkForLetter(letter).size();
-//        ArrayList<Integer> positions = new ArrayList<Integer>(word.checkForLetter(letter));
-//        for (int i = 0; i < positions.size(); i++ ){
-//           System.out.println(positions.get(i));
-//        }
-
     }
 
     public void checkForWrongAnswer(char letter){
@@ -44,18 +48,15 @@ public class Game {
         }
     }
 
-
-
     public void guessLetter(char letter){
         if(!guessed.contains(letter)){
             guessed.add(letter);
             getLetterPositions(letter);
             checkForWrongAnswer(letter);
-        }else{
+        }
+        else{
             print.repeatGuess();
         }
-
-
     }
 
     public int viewUserLives(){
@@ -76,7 +77,10 @@ public class Game {
     }
 
     public void win(){
-        print.winMessage(word.changeToString());
+        print.winMessage(word.changeToString(), user);
     }
 
+    public void showGuessed(){
+        print.guessedLetters(guessed);
+    }
 }
