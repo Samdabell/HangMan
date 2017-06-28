@@ -47,16 +47,15 @@ public class Game {
 
 
     public void guessLetter(char letter){
-        for (int i = 0; i < guessed.size(); i++){
-            if (guessed.get(i) == letter){
-                print.repeatGuess();
-            }
-            else {
-                getLetterPositions(letter);
-                checkForWrongAnswer(letter);
-                guessed.add(letter);
-            }
+        if(!guessed.contains(letter)){
+            guessed.add(letter);
+            getLetterPositions(letter);
+            checkForWrongAnswer(letter);
+        }else{
+            print.repeatGuess();
         }
+
+
     }
 
     public int viewUserLives(){
